@@ -1,17 +1,15 @@
-# Use a imagem base do Node.js
-FROM node:18
+# bovicare-web/Dockerfile
+FROM node:14
 
-# Defina o diretório de trabalho dentro do container
 WORKDIR /app
 
-# Copie os arquivos package.json e package-lock.json para o diretório de trabalho
-COPY package.json package-lock.json ./
+COPY package.json /app
+COPY package-lock.json /app
 
-# Instale as dependências do projeto
 RUN npm install
 
-# Copie o restante do código da aplicação
-COPY . .
+COPY . /app
 
-# Defina o comando para iniciar a aplicação
+EXPOSE 3000
+
 CMD ["npm", "start"]
